@@ -20,22 +20,25 @@ hexEncode: function(str){
 
 signGetMethod: function (sMethod, aKeyValue, sSignatureKey) {
     var formKeys = Object.keys(aKeyValue);
-    var str = '';
-    str = str + sMethod;
-
     var sURL = 'https://apinotify.mail.ru/' + sMethod + '?';
-
+    var aPairs = [];
     for (var i = 0; i < formKeys.length; i++) {
         var formKey = formKeys[i];
-        str = str + formKey + aKeyValue[formKey];
+        var str = formKey + aKeyValue[formKey];
+	 aPairs.push(str);
 	 sURL += (i == 0 ? '' : '&') + formKey + '=' + this.encodeURL(aKeyValue[formKey]);
     };
-    str = this.encodeURL(str);
+    aPairs.sort();
+    var sSignString = sMethod;
+    for (var i = 0; i < aPairs.length; i++) {
+	sSignString += aPairs[i];
+    }
+    sSignString = this.encodeURL(sSignString);
 
     var signatureKeyEncoded = this.hexEncode(sSignatureKey);
-    str = str + signatureKeyEncoded;
+    sSignString += signatureKeyEncoded;
 
-    var md5str = this.MD5(str);
+    var md5str = this.MD5(sSignString);
 
     sURL += '&signature=' + md5str;
 
