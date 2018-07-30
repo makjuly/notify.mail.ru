@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /* normalize */
+        html {
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            margin: 0;
+        }
+        /* normalize END */
+        /* reset */
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /* reset END */
+        h1 {
+            font-size: 24px;
+            font-weight: normal;
+            text-align: center;
+        }
+        .t-center {
+            text-align: center;
+        }
+        p {
+            margin: 25px 0;
+        }
+        /* form elements */
+        form {
+            font-size: 16px;
+            width: 750px;
+            margin: 0 auto;
+        }
+        label {
+            width: 100%;
+            white-space: nowrap;
+        }
+        .label_text {
+            display: inline-block;
+            width: 29%;
+        }
+        input[type=text] {
+            display: inline-block;
+            width: 70%;
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0 10px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+            border: 1px solid #000;
+            border-radius: 3px;
+        }
+        textarea {
+            display: inline-block;
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            padding: 10px 10px;
+            height: 7.2em;
+            vertical-align: middle;
+            font-size: 18px;
+            line-height: normal;
+            border: 1px solid #000;
+            border-radius: 3px;
+        }
+        button,
+        [type="submit"] {
+            display: inline-block;
+            background-color: #3fc4ff;
+            color: #fff;
+            font-size: 18px;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 55px;
+            border-radius: 5px;
+            text-decoration: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        button {
+            color: #000;
+            background-color: #f7f7f7;
+        }
+        .btn_wrap {
+            margin-left: 29%;
+        }
+        /* form elements END */
+    </style>
+</head>
+<body>
+
+<h1>notify.mail.ru oauth1 sample signature generator</h1>
+
+<form data-form="form">
+    <p>
+        <label>
+            <span class="label_text">Method</span>
+            <input type="text" name="method" value="get_message_templates" class="inp"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label_text">Application</span>
+            <input type="text" name="application" value="" class="inp"/>
+        </label>
+    </p>
+     <p>
+        <label>
+            <span class="label_text">service</span>
+            <input type="text" name="service" value="" class="inp"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label_text">Signature key</span>
+            <input type="text" name="signature_key" value="" class="inp"/>
+        </label>
+    </p>
+    <p class="btn_wrap">
+        <input type="submit" value="Сгенерировать" />
+    </p>
+    <p>
+        <label>
+            <span class="label_text">Signature</span>
+            <textarea type="text" name="signature" disabled="disabled"></textarea>
+        </label>
+    </p>
+</form>
+
+</body>
+
+<script type="application/javascript" src="./notify.oauth1.js"></script>
+
+<script>
+/*String.prototype.hexEncode = function(){
+    var hex, i;
+
+    var result = "";
+    for (i=0; i<this.length; i++) {
+        hex = this.charCodeAt(i).toString(16);
+        result += hex;
+    }
+
+    return result
+}*/
+
+var form = document.querySelector('form');
+var inputs = document.querySelectorAll('.inp');
+var signatureInput = document.querySelector('[name=signature]');
+var signatureKeyInput = document.querySelector('[name=signature_key]');
+var methodInput = document.querySelector('[name=method]');
+
+var getFormData = function () {
+    var formData = {};
+
+    for (var i = 0; i<inputs.length; i++) {
+        var input = inputs[i];
+        if (input.name !== "signature" &&
+        input.name !== 'signature_key' && 
+	 input.value.toString().length > 0 &&
+        input.name !== 'method') {
+            formData[input.name] = input.value;
+        }
+    };
+    return formData;
+};
+
+var submitHandler = function(e){
+    e.preventDefault();
+    var formData = getFormData();
+
+    var signature = notify_mail_ru.signGetMethod(methodInput.value, formData, signatureKeyInput.value);
+    signatureInput.value = signature;
+
+    window.open(signature,'_blank');
+};
+
+form.addEventListener('submit', submitHandler);
+</script>
+</html>
