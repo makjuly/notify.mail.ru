@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /* normalize */
+        html {
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            margin: 0;
+        }
+        /* normalize END */
+        /* reset */
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /* reset END */
+        h1 {
+            font-size: 24px;
+            font-weight: normal;
+            text-align: center;
+        }
+        .t-center {
+            text-align: center;
+        }
+        p {
+            margin: 25px 0;
+        }
+        /* form elements */
+        form {
+            font-size: 16px;
+            width: 750px;
+            margin: 0 auto;
+        }
+        label {
+            width: 100%;
+            white-space: nowrap;
+        }
+        .label_text {
+            display: inline-block;
+            width: 29%;
+        }
+        input[type=text] {
+            display: inline-block;
+            width: 70%;
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0 10px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+            border: 1px solid #000;
+            border-radius: 3px;
+        }
+        textarea {
+            display: inline-block;
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            padding: 10px 10px;
+            height: 7.2em;
+            vertical-align: middle;
+            font-size: 18px;
+            line-height: normal;
+            border: 1px solid #000;
+            border-radius: 3px;
+        }
+        button,
+        [type="submit"] {
+            display: inline-block;
+            background-color: #3fc4ff;
+            color: #fff;
+            font-size: 18px;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 55px;
+            border-radius: 5px;
+            text-decoration: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        button {
+            color: #000;
+            background-color: #f7f7f7;
+        }
+        .btn_wrap {
+            margin-left: 29%;
+        }
+        /* form elements END */
+    </style>
+</head>
+<body>
+
+<h1>notify.mail.ru oauth1 sample signature generator</h1>
+
+<form data-form="form" enctype="multipart/form-data" method="post" target="_blank">
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">Method</span>
+            <input type="text" name="method" value="message_template" class="inp"/>
+        </label>
+    </p>
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">Application</span>
+            <input type="text" name="application" value="" class="inp"/>
+        </label>
+    </p>
+     <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">Email</span>
+            <input type="text" name="email" value="" class="inp"/>
+        </label>
+    </p>
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">vk_group_url</span>
+            <input type="text" name="vk_group_url" value="" class="inp"/>
+        </label>
+    </p>
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">ok_group_url</span>
+            <input type="text" name="ok_group_url" value="" class="inp"/>
+        </label>
+    </p>
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">mame</span>
+            <input type="text" name="name" value="" class="inp"/>
+        </label>
+    </p>
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">tmpl</span>
+            <textarea type="text" name="tmpl" class="inp">Лебовски, где картинка?</textarea>
+        </label>
+    </p>
+    <p data-form="param" data-form-param="post">
+        <label data-form="file-wrap">
+            <span class="label_text">file</span>
+            <input type="file" name="attachment1" value="" class="inp"/>
+        </label>
+    </p>
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">Signature key</span>
+            <input type="text" name="signature_key" value="" class="inp"/>
+        </label>
+    </p>
+    <p data-form="param" class="btn_wrap">
+        <input type="submit" value="Сгенерировать" />
+    </p>
+    <p data-form="param" data-form-param="get">
+        <label>
+            <span class="label_text">Signature</span>
+            <textarea type="text" name="signature" disabled="disabled"></textarea>
+        </label>
+    </p>
+</form>
+
+</body>
+
+<script type="application/javascript" src="./notify.oauth1.file.js"></script>
+</html>
