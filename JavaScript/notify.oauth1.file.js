@@ -30,7 +30,7 @@ const notify_mail_ru = {
 
     signGetMethod: function (sMethod, aKeyValue, sSignatureKey) {
         const formKeys = Object.keys(aKeyValue);
-        let sURL = 'https://apinotify.mail.ru/' + sMethod + '?';
+        let sURL = 'https://notifygw.mail.ru/' + sMethod + '?';
         let aPairs = [];
         for (let i = 0; i < formKeys.length; i++) {
             const formKey = formKeys[i];

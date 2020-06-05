@@ -29,7 +29,7 @@ hexEncode: function(str){
 
 signGetMethod: function (sMethod, aKeyValue, sSignatureKey) {
     var formKeys = Object.keys(aKeyValue);
-    var sURL = 'https://apinotify.mail.ru/' + sMethod + '?';
+    var sURL = 'https://notifygw.mail.ru/' + sMethod + '?';
     var aPairs = [];
     for (var i = 0; i < formKeys.length; i++) {
         var formKey = formKeys[i];
